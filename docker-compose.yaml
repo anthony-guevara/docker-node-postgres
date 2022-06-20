@@ -26,19 +26,19 @@ services:
   mysql:
     image: mysql:latest
     environment:
-      - MYSQL_USER=rootuser
+      - MYSQL_USER=root
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=my_store
       - MYSQL_PORT=3306
     ports:
-      - "33306:3306"
+      - "3306:3306"
     volumes:
       - ./mysql_data:/var/lib/mysql
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     environment:
-      - MYSQL_USER=rootuser
+      - MYSQL_USER=root
       - MYSQL_ROOT_PASSWORD=root
       - PMA_HOST=mysql
     ports:
