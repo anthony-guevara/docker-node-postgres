@@ -22,6 +22,7 @@ const options = {
 }
 app.use(cors(options));
 
+require('./utils/auth');
 
 app.get ('/nueva-ruta', checkApiKey,  (req, res) => {
   res.send('Hola mundo');
