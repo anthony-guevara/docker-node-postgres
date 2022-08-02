@@ -11,7 +11,24 @@ class OrderService {
   }
 
   async find() {
-    const orders  = await models.Order.findAll()
+    const orders = await models.Order.findAll();
+
+    return orders;
+  }
+
+  async findByUser(userId) {
+    const orders = await models.Order.findAll({
+
+      where: {
+        '$customer.user.id$':userId,
+      },
+      include: [
+        {
+          association: 'customer',
+          include: ['user'],
+        }
+      ],
+    });
 
     return orders;
   }
@@ -23,7 +40,7 @@ class OrderService {
           association: 'customer',
           include: ['user'],
         },
-        'items'
+        'items',
       ],
     });
     return order;
@@ -46,7 +63,5 @@ class OrderService {
     return newItem;
   }
 }
-
-
 
 module.exports = OrderService;
